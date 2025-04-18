@@ -1,0 +1,18 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure Linksys Reboot",
+        "description": "Enter your Linksys Smart Wi-Fi credentials",
+        "data": {
+          "username": "Email",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "auth": "Authentication failed. Please check credentials.",
+      "unknown": "An unknown error occurred."
+    }
+  }
+}
