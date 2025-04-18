@@ -1,11 +1,13 @@
 {
   "domain": "linksys_reboot",
-  "name": "Linksys Router Reboot",
-  "version": "1.0.25",
-  "documentation": "https://github.com/ebertek/linksys_reboot",
-  "issue_tracker": "https://github.com/ebertek/linksys_reboot/issues",
-  "requirements": [],
+  "name": "Linksys Reboot",
+  "after_dependencies": ["cloud", "http"],
   "codeowners": ["@ebertek"],
   "config_flow": true,
-  "iot_class": "cloud_polling"
+  "dependencies": [],
+  "documentation": "https://github.com/ebertek/linksys_reboot",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/ebertek/linksys_reboot/issues",
+  "requirements": [],
+  "version": "1.0.25"
 }

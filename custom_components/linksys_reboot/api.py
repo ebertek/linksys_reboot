@@ -1,21 +1,25 @@
-import aiohttp
 import logging
+import aiohttp
 
 _LOGGER = logging.getLogger(__name__)
 
 CLIENT_TYPE_ID = "BB426FA7-16A9-5C1C-55AF-63A4167B26AD"
 
 class LinksysApiClient:
+    """Client to interact with the Linksys Smart Wi-Fi cloud API."""
     def __init__(self, username: str, password: str, session: aiohttp.ClientSession):
+        """Initialize the API client."""
         self._username = username
         self._password = password
         self._session = session
 
     async def async_get_data(self):
+        """Placeholder method to fetch and return dummy data for testing connectivity."""
         _LOGGER.debug("LinksysApiClient: async_get_data called")
         return {"status": "ready"}
 
     async def async_reboot_router(self):
+        """Authenticate, fetch network ID, and trigger a router reboot."""
         _LOGGER.debug("LinksysApiClient: async_reboot_router called")
 
         login_payload = {
@@ -85,10 +89,13 @@ class LinksysApiClient:
             return result.get("result") == "OK"
 
 class LinksysApiClientError(Exception):
+    """Base exception for Linksys API client errors."""
     pass
 
 class LinksysApiClientCommunicationError(LinksysApiClientError):
+    """Raised when communication with the API fails."""
     pass
 
 class LinksysApiClientAuthenticationError(LinksysApiClientError):
+    """Raised when authentication with the API fails."""
     pass

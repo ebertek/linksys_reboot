@@ -1,10 +1,5 @@
 {
-  "name": "Linksys Router Reboot",
+  "name": "Linksys Reboot",
   "content_in_root": false,
-  "domains": ["switch"],
-  "country": "US",
-  "homeassistant": "2023.0.0",
-  "render_readme": true,
-  "iot_class": "cloud_polling",
   "zip_release": false
 }

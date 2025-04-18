@@ -1,3 +1,4 @@
+"""Initialize the Linksys Reboot integration."""
 from homeassistant.const import Platform
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from .const import DOMAIN, LOGGER
@@ -7,6 +8,7 @@ from .coordinator import LinksysDataUpdateCoordinator
 PLATFORMS = [Platform.SWITCH]
 
 async def async_setup_entry(hass, entry):
+    """Set up the Linksys Reboot integration from a config entry."""
     coordinator = LinksysDataUpdateCoordinator(hass=hass, logger=LOGGER)
     coordinator.config_entry = entry
     entry.runtime_data = type("obj", (object,), {
@@ -18,4 +20,5 @@ async def async_setup_entry(hass, entry):
     return True
 
 async def async_unload_entry(hass, entry):
+    """Unload a config entry."""
     return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)

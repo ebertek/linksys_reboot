@@ -1,4 +1,4 @@
-# Linksys Router Reboot for Home Assistant
+# Linksys Reboot - Home Assistant Integration
 
 A custom Home Assistant integration to remotely reboot your Linksys EA6350 (and compatible models) via the [Linksys Smart Wi-Fi](https://linksyssmartwifi.com) cloud API.
 
@@ -11,16 +11,23 @@ A custom Home Assistant integration to remotely reboot your Linksys EA6350 (and 
 - No SNMP or local API access needed
 
 ## Installation
+### HACS (Recommended)
+1. Go to **HACS**
+2. Click on the three-dot menu (top right) and select **Custom repositories**
+3. Add this Repository: `https://github.com/ebertek/linksys_reboot`
+4. Select **Integration** as the Type
+5. Search for and select **Linksys Reboot**, click **Download**, and click **Download** again
+6. Restart Home Assistant
 
-1. Copy the `linksys_reboot` folder to `config/custom_components/` in your Home Assistant setup.
-2. Restart Home Assistant.
-3. Go to **Settings → Devices & Services → Add Integration**, search for "Linksys Reboot".
-4. Enter your Linksys account credentials.
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ebertek&repository=linksys_reboot&category=Integration)
 
-## Credits
+### Manual Installation  
+1. Copy the `custom_components/linksys_reboot` folder into your own `config/custom_components/`
+2. Restart Home Assistant
 
-Developed by [@ebertek](https://github.com/ebertek)
+## Configuration
+1. Navigate to **Settings > Devices & services**
+2. Click **Add integration** and search for `Linksys Reboot`
 
 ## License
-
-Apache License 2.0
+This project is licensed under the [Apache License 2.0](LICENSE).

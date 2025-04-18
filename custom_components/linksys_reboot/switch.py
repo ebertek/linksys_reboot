@@ -1,7 +1,8 @@
-from homeassistant.components.switch import SwitchEntity, SwitchEntityDescription
-from .entity import LinksysEntity
+"""Switch platform for the Linksys Reboot integration."""
 import logging
 import asyncio
+from homeassistant.components.switch import SwitchEntity, SwitchEntityDescription
+from .entity import LinksysEntity
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -23,12 +24,14 @@ async def async_setup_entry(hass, entry, async_add_entities):
     )
 
 class LinksysRebootSwitch(LinksysEntity, SwitchEntity):
+    """Switch that triggers a Linksys router reboot."""
     def __init__(self, coordinator, entity_description):
         super().__init__(coordinator)
         self.entity_description = entity_description
         self._attr_is_on = False
 
     async def async_turn_on(self, **kwargs):
+        """Send reboot command and reset switch state."""
         _LOGGER.debug("LinksysRebootSwitch: async_turn_on called")
         success = await self.coordinator.config_entry.runtime_data.client.async_reboot_router()
         _LOGGER.debug(f"Reboot result: {success}")
@@ -39,10 +42,12 @@ class LinksysRebootSwitch(LinksysEntity, SwitchEntity):
         self.async_write_ha_state()
 
     async def async_turn_off(self, **kwargs):
+        """Force switch to off state (used by UI reset)."""
         _LOGGER.debug("LinksysRebootSwitch: async_turn_off called")
         self._attr_is_on = False
         self.async_write_ha_state()
 
     @property
     def is_on(self) -> bool:
+        """Return True if the switch is currently on (reboot was triggered)."""
         return self._attr_is_on

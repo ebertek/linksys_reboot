@@ -5,9 +5,11 @@ from .const import DOMAIN
 from .api import LinksysApiClient
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+    """Handle the config flow for the Linksys Reboot integration."""
     VERSION = 1
 
     async def async_step_user(self, user_input=None):
+        """Show the config form and handle user input."""
         errors = {}
         if user_input:
             client = LinksysApiClient(
