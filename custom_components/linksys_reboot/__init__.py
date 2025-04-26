@@ -1,8 +1,12 @@
 """Initialize the Linksys Reboot integration."""
-from homeassistant.const import Platform
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from .const import DOMAIN, LOGGER
+
+# pylint: disable=C0301, E0401
+
+from homeassistant.const import Platform # type: ignore
+from homeassistant.helpers.aiohttp_client import async_get_clientsession # type: ignore
+
 from .api import LinksysApiClient
+from .const import LOGGER
 from .coordinator import LinksysDataUpdateCoordinator
 
 PLATFORMS = [Platform.SWITCH]

@@ -1,10 +1,11 @@
 """Data coordinator for the Linksys Reboot integration."""
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
-from homeassistant.exceptions import ConfigEntryAuthFailed
-from .api import (
-    LinksysApiClientAuthenticationError,
-    LinksysApiClientError
-)
+
+# pylint: disable=C0301, E0401, R0903
+
+from homeassistant.exceptions import ConfigEntryAuthFailed # type: ignore
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed # type: ignore
+
+from .api import LinksysApiClientAuthenticationError, LinksysApiClientError
 
 class LinksysDataUpdateCoordinator(DataUpdateCoordinator):
     """Manage fetching and refreshing data from the Linksys cloud API."""

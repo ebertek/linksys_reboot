@@ -1,6 +1,12 @@
-from homeassistant import config_entries
-from homeassistant.const import CONF_USERNAME, CONF_PASSWORD
-import voluptuous as vol
+"""Config flow for the Linksys Reboot integration."""
+
+# pylint: disable=E0401, R0903, W0718
+
+import voluptuous as vol # type: ignore
+
+from homeassistant import config_entries # type: ignore
+from homeassistant.const import CONF_USERNAME, CONF_PASSWORD # type: ignore
+
 from .const import DOMAIN
 from .api import LinksysApiClient
 

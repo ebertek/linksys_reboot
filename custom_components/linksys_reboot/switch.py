@@ -1,7 +1,12 @@
 """Switch platform for the Linksys Reboot integration."""
-import logging
+
+# pylint: disable=E0401, W0613
+
 import asyncio
-from homeassistant.components.switch import SwitchEntity, SwitchEntityDescription
+import logging
+
+from homeassistant.components.switch import SwitchEntity, SwitchEntityDescription # type: ignore
+
 from .entity import LinksysEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -15,6 +20,7 @@ ENTITY_DESCRIPTIONS = (
 )
 
 async def async_setup_entry(hass, entry, async_add_entities):
+    """Set up Linksys Reboot switch based on a config entry."""
     async_add_entities(
         LinksysRebootSwitch(
             coordinator=entry.runtime_data.coordinator,
@@ -34,7 +40,7 @@ class LinksysRebootSwitch(LinksysEntity, SwitchEntity):
         """Send reboot command and reset switch state."""
         _LOGGER.debug("LinksysRebootSwitch: async_turn_on called")
         success = await self.coordinator.config_entry.runtime_data.client.async_reboot_router()
-        _LOGGER.debug(f"Reboot result: {success}")
+        _LOGGER.debug("Reboot result: %s", success)
         self._attr_is_on = success
         self.async_write_ha_state()
         await asyncio.sleep(5)

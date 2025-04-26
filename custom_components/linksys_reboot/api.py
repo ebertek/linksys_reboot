@@ -1,5 +1,10 @@
+"""APIs used for the Linksys Reboot integration."""
+
+# pylint: disable=C0301, E0401
+
 import logging
-import aiohttp
+
+import aiohttp # type: ignore
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -43,7 +48,7 @@ class LinksysApiClient:
         async with self._session.post("https://linksyssmartwifi.com/cloud/user-service/rest/v2/sessions",
                                       headers=login_headers, json=login_payload) as resp:
             login_data = await resp.json()
-            _LOGGER.debug(f"Login response: {login_data}")
+            _LOGGER.debug("Login response: %s", login_data)
             token = login_data.get("session", {}).get("token")
             if not token:
                 _LOGGER.error("Authentication failed")
@@ -63,7 +68,7 @@ class LinksysApiClient:
         async with self._session.get("https://linksyssmartwifi.com/cloud/device-service/rest/accounts/self/networks",
                                      headers=network_headers) as resp:
             net_data = await resp.json()
-            _LOGGER.debug(f"Network list response: {net_data}")
+            _LOGGER.debug("Network list response: %s", net_data)
             networks = net_data.get("networkAccountAssociations", [])
             if not networks:
                 _LOGGER.error("No networks found")
@@ -85,17 +90,14 @@ class LinksysApiClient:
 
         async with self._session.post("https://linksyssmartwifi.com/cloud/JNAP/", headers=reboot_headers, json={}) as resp:
             result = await resp.json()
-            _LOGGER.debug(f"Reboot response: {result}")
+            _LOGGER.debug("Reboot response: %s", result)
             return result.get("result") == "OK"
 
 class LinksysApiClientError(Exception):
     """Base exception for Linksys API client errors."""
-    pass
 
 class LinksysApiClientCommunicationError(LinksysApiClientError):
     """Raised when communication with the API fails."""
-    pass
 
 class LinksysApiClientAuthenticationError(LinksysApiClientError):
     """Raised when authentication with the API fails."""
-    pass

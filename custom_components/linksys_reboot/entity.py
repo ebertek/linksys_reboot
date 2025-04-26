@@ -1,10 +1,15 @@
 """Base class for Linksys Reboot entities."""
-from homeassistant.helpers.device_registry import DeviceInfo
-from homeassistant.helpers.update_coordinator import CoordinatorEntity
+
+# pylint: disable=E0401, R0903
+
+from homeassistant.helpers.device_registry import DeviceInfo # type: ignore
+from homeassistant.helpers.update_coordinator import CoordinatorEntity # type: ignore
+
 from .const import DOMAIN
 from .coordinator import LinksysDataUpdateCoordinator
 
 class LinksysEntity(CoordinatorEntity[LinksysDataUpdateCoordinator]):
+    """Linksys Router entity."""
     _attr_has_entity_name = True
 
     def __init__(self, coordinator: LinksysDataUpdateCoordinator) -> None:
